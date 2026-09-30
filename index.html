@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Личное дело: варианты</title>
+<style>
+:root{--bg:#f3ecdc;--paper:#fbf6ea;--ink:#2b2418;--muted:#8a7d66;--line:#d9cdb3;--red:#a3271f;--ok:#2f6b3a;--okbg:#e3efd9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Georgia,"Times New Roman",serif;padding-bottom:90px}
+header{padding:20px 16px 8px;max-width:1100px;margin:0 auto}
+h1{font:700 22px/1.2 "Courier New",monospace;margin:0 0 6px;letter-spacing:.5px}
+h1 span{color:var(--red)}
+.hint{color:var(--muted);font-size:14px;margin:0}
+main{max-width:1100px;margin:0 auto;padding:0 16px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:6px;margin:14px 0;padding:12px 12px 6px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+h2{font:700 16px "Courier New",monospace;margin:0 0 10px;color:var(--red);text-transform:uppercase;letter-spacing:.5px}
+.row{display:grid;grid-template-columns:110px 1fr;gap:8px;border-top:1px dashed var(--line);padding:8px 0}
+.row:first-of-type{border-top:0}
+.lab{font:600 13px "Courier New",monospace;color:var(--muted);padding-top:8px}
+.cells{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.cell{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:5px;padding:8px;background:#fff;cursor:pointer;font-size:15px}
+.cell input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--ok)}
+.cell.on{background:var(--okbg);border-color:var(--ok)}
+.cell.old{color:var(--muted)}
+.cell.old .t{text-decoration:line-through}
+.tag{display:inline-block;font:11px "Courier New",monospace;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:4px;text-decoration:none}
+.tag.like{color:var(--ok)}
+.tag.old{color:var(--red)}
+.own{width:100%;margin:6px 0 6px;border:1px dashed var(--line);border-radius:5px;padding:8px;font:15px Georgia,serif;background:#fff;color:var(--ink);resize:vertical;min-height:40px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);padding:10px 16px;display:flex;gap:8px;justify-content:center}
+.bar button{font:600 15px "Courier New",monospace;border:0;border-radius:5px;padding:12px 16px;cursor:pointer}
+.b1{background:#f0c24b;color:#2b2418;flex:1;max-width:360px}
+.b2{background:transparent;color:#ddd;border:1px solid #666!important}
+#out{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px}
+#out .box{background:var(--paper);border-radius:8px;max-width:700px;width:100%;max-height:88vh;display:flex;flex-direction:column;padding:14px}
+#out textarea{flex:1;min-height:50vh;width:100%;font:14px/1.4 Georgia,serif;border:1px solid var(--line);border-radius:5px;padding:10px;background:#fff;color:var(--ink)}
+#out .btns{display:flex;gap:8px;margin-top:10px}
+#out .btns button{flex:1;font:600 15px "Courier New",monospace;border:0;border-radius:5px;padding:12px;cursor:pointer;background:#f0c24b;color:#2b2418}
+#out .btns .c{background:#ddd}
+@media (max-width:600px){.row{grid-template-columns:1fr}.lab{padding-top:0}.cells{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>ЛИЧНОЕ ДЕЛО № 01101959 <span>· варианты</span></h1>
+<p class="hint">Отмечайте галочкой, что нравится. В строке может быть несколько галочек. Зачёркнутое вы раньше убирали — оно здесь для полной картины. В конце каждого листа есть поле «дописать». Внизу кнопка «Собрать» соберёт отмеченное в текст — скопируйте его и пришлите в чат.</p>
+</header>
+<main id="m"></main>
+<div class="bar"><button class="b1" onclick="collect()">Собрать отмеченное</button><button class="b2" onclick="resetAll()">Сброс</button></div>
+<div id="out"><div class="box"><textarea id="res"></textarea><div class="btns"><button onclick="copyRes()" id="cp">Скопировать</button><button class="c" onclick="document.getElementById('out').style.display='none'">Закрыть</button></div></div></div>
+<script>
+const S=[["Обложка", [["Шапка", [["ЛИЧНОЕ ДЕЛО № 01101959. Объект: Роза М. Оперативный позывной: «Мама». Совершенно секретно.", ""], ["ЛИЧНОЕ ДЕЛО № 01101959. Объект: Роза М. Оперативный позывной: «Мама». Совершенно секретно. Хранить вечно.", "убрано ранее"]]]]], ["Лист 1. Анкета", [["Приметы", [["Особые приметы: элегантная причёска, безупречный стиль, улыбка, обезоруживающая с первого взгляда.", ""], ["Особые приметы: рыжая чёлка, улыбка, обезоруживающая с первого взгляда.", "убрано ранее"]]], ["Опасность", [["Степень опасности: крайне обаятельна.", ""]]], ["Честность", [["Врать не умеет. Показания всегда правдивы, даже когда это невыгодно следствию.", ""], ["На допросах врать не умеет: проверено тремя дочерьми.", "убрано ранее"]]]]], ["Лист 2. Книги и сериалы", [["Заголовок", [["Лист 2.", ""], ["Лист 2. Много читает.", ""]]], ["Книги", [["Если сложить прочитанные объектом книги, стопка превысит Эйфелеву башню. Пересчитать не удалось: объект читает быстрее, чем мы считаем.", "понравилось"], ["При обыске изъяты книги в количестве, не поддающемся учёту. Стопка превысит Эйфелеву башню.", "убрано ранее"]]], ["Сериалы", [["Параллельно ведёт наблюдение за несколькими сериалами. Спойлеры не выдаёт даже под давлением.", ""], ["Ведёт наблюдение за несколькими сюжетными линиями одновременно, спойлеры не выдаёт.", ""]]]]], ["Лист 3. Урожай", [["Заголовок", [["Лист 3.", ""], ["Лист 3. Выращивает урожай.", ""], ["Лист 3. Выращивает урожай в промышленных масштабах.", "убрано ранее"]]], ["Урожай", [["На участке объекта обнаружены цветы в большом количестве, а также помидоры, дыни и тыквы подозрительно крупных размеров. Производство поставлено на поток.", ""], ["Выращивание цветов и овощей поставлено на поток.", ""], ["На участке обнаружены розы, помидоры и кабачки подозрительно крупных размеров.", "убрано ранее"]]], ["Ферма", [["Аналогичную деятельность ведёт на Весёлой ферме: действует упорно, уровень засекречен.", ""], ["…в игре «Весёлая ферма» ВКонтакте…", "убрано ранее"]]], ["Соседи", [["Соседи подозревают объект в нечестной конкуренции. Проверка показала: секрет урожая — золотые руки и много любви.", ""], ["Соседи подозревают объект в нечестной конкуренции: у неё всё растёт лучше.", ""], ["Объект отшучивается, и отшучиваться умеет.", "убрано ранее"]]]]], ["Лист 4. Готовка и доброта", [["Заголовок", [["Лист 4.", ""], ["Лист 4. Превосходно готовит.", ""]]], ["Пирожки", [["Пирожки объекта квалифицированы как оружие массового поражения: попробовавшие теряют волю к сопротивлению и просят добавки.", ""]]], ["Доброта", [["Склонна к рецидивам доброты. Неоднократно задержана с поличным при раздаче угощений. Исправлению не подлежит.", ""], ["Склонна к рецидивам доброты. Исправлению не подлежит.", ""]]]]], ["Лист 5. Работа", [["Заголовок", [["Лист 5. Послужной список.", ""], ["Лист 5. Неоднократно меняла род деятельности.", ""]]], ["Своё дело", [["Бизнесвумен: самостоятельно организовала дело, возила одежду и одела половину Усть-Катава. Вторая половина до сих пор завидует.", ""], ["Продавец. По неподтверждённым данным, одела половину Усть-Катава; вторая половина до сих пор завидует.", "убрано ранее"]]], ["Лифтёр", [["Лифтёр: контролирует вертикальные перемещения граждан.", ""]]], ["Диспетчер", [["Диспетчер: всегда знает, кто где находится.", ""]]]]], ["Лист 6. Навыки", [["Заголовок", [["Лист 6. Обладает особыми навыками.", ""], ["Лист 6. Скрытые таланты.", ""]]], ["Транспорт", [["Управляет автомобилем, лодкой и мотоциклом — предпочитает чужими руками: действует методом обаяния. Имеются основания полагать, что тем же методом способна поднять в воздух самолёт и тронуть с места гужевую повозку. Проверка продолжается.", ""], ["Водит самолёт, лодку, гужевую повозку, автомобиль и мотоцикл. Исключительно чужими руками: действует методом обаяния.", "убрано ранее"]]], ["Спорт", [["Физическая подготовка: регулярные тренировки. Догнать объект следствию пока не удалось.", ""], ["Физическая подготовка и творческие способности засекречены. Представлены к награде.", ""]]], ["Творчество", [["Творческие способности: из-под рук объекта выходят вещи, которые хочется повесить на стену. Экспертиза признала: талант.", ""]]]]], ["Лист 7. Поездки", [["Заголовок", [["Лист 7. Склонна к перемещениям.", ""], ["Лист 7. Перемещения.", ""]]], ["Города", [["Замечена в Барнауле, Уфе, Екатеринбурге, Новосибирске, Санкт-Петербурге, Москве, Калининграде, Лазаревском и Сочи.", ""]]], ["С кем", [["Передвигается исключительно в сопровождении Олега М.", ""]]], ["Планы", [["Потенциально готова к переброске в особо интересные точки: к Ниагарскому водопаду, в пески Сахары, в джунгли Амазонки, на Байкал, к вулканам Камчатки, под северное сияние.", ""], ["Готовит проникновение в джунгли, к Ниагарскому водопаду и в пески Сахары.", "убрано ранее"]]]]], ["Лист 8. Семья", [["Заголовок", [["Лист 8. Семейное положение: замужем.", ""], ["Лист 8. Вербовка.", ""]]], ["Папа", [["18 декабря 1981 года завербовала и окольцевала Олега М. Объект попал под её чары и выйти из-под них не смог. Попыток не предпринимал.", ""]]], ["Дочери", [["В ходе операции завербованы три дочери — пожизненно.", "убрано ранее"]]]]], ["Финал: форма", [["Как заканчиваем", [["А. Печать «ЛЮБИМА»: «Заключение: объект особо любим. Мера пресечения — пожизненные объятия. Дело не закрывать никогда».", ""], ["Б. Вердикт семьи: «Дело передано в высшую инстанцию — семье. Вердикт единогласный: любима».", ""], ["В. Живые голоса: «Следствие окончено. Свидетели дали показания» — по фразе от трёх дочерей и папы. «Все показания совпали: мы тебя любим».", ""]]], ["Подпись", [["Олег М. и три дочери.", ""]]]]], ["Финал: постановление-пожелания", [["Вступление", [["ПОСТАНОВЛЕНИЕ. Рассмотрев материалы дела, семья постановила:", ""]]], ["Наблюдение", [["Оставить объект под постоянным наблюдением любящей семьи. Бессрочно.", ""]]], ["Здоровье", [["Обеспечить объекту крепкое здоровье. Контроль возложить на всех членов семьи.", ""]]], ["Улыбки", [["Назначить ежедневную норму улыбок — без верхнего предела.", ""]]], ["Погода", [["Предоставить хорошую погоду: на даче, в отпуске и в любой другой точке пребывания.", ""]]], ["Впечатления", [["Организовать новые яркие впечатления и путешествия. Ниагарский водопад — в приоритетном порядке.", ""]]], ["Настроение", [["Хорошее настроение выдавать без ограничений и без очереди.", ""]]], ["Мера", [["Мера пресечения — пожизненные объятия.", ""]]], ["Концовка", [["Постановление вступает в силу 1 октября 2026 года и обжалованию не подлежит.", ""]]], ["Печать", [["Печать крупно: «С днём рождения, мама!»", ""]]]]]];
+const KEY='delo_v1';
+let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+const m=document.getElementById('m');
+S.forEach((sec,si)=>{
+  const s=document.createElement('section');
+  s.innerHTML='<h2>'+sec[0]+'</h2>';
+  sec[1].forEach((row,ri)=>{
+    const r=document.createElement('div');r.className='row';
+    r.innerHTML='<div class="lab">'+row[0]+'</div>';
+    const c=document.createElement('div');c.className='cells';
+    row[1].forEach((v,vi)=>{
+      const id=si+'.'+ri+'.'+vi;
+      const l=document.createElement('label');
+      l.className='cell'+(v[1]==='убрано ранее'?' old':'')+(st[id]?' on':'');
+      const tag=v[1]==='убрано ранее'?'<span class="tag old">убрано</span>':v[1]?'<span class="tag like">'+v[1]+'</span>':'';
+      l.innerHTML='<input type="checkbox"'+(st[id]?' checked':'')+'><span><span class="t">'+v[0]+'</span>'+tag+'</span>';
+      l.querySelector('input').onchange=e=>{st[id]=e.target.checked;l.classList.toggle('on',e.target.checked);save()};
+      c.appendChild(l);
+    });
+    r.appendChild(c);s.appendChild(r);
+  });
+  const t=document.createElement('textarea');t.className='own';t.placeholder='Дописать своё к этому листу…';
+  t.value=st['own'+si]||'';t.oninput=()=>{st['own'+si]=t.value;save()};
+  s.appendChild(t);m.appendChild(s);
+});
+function collect(){
+  let out=[];
+  S.forEach((sec,si)=>{
+    let lines=[];
+    sec[1].forEach((row,ri)=>row[1].forEach((v,vi)=>{if(st[si+'.'+ri+'.'+vi])lines.push('— '+v[0])}));
+    if(st['own'+si])lines.push('+ '+st['own'+si]);
+    if(lines.length)out.push('['+sec[0]+']\n'+lines.join('\n'));
+  });
+  document.getElementById('res').value=out.join('\n\n')||'Пока ничего не отмечено.';
+  document.getElementById('out').style.display='flex';
+}
+function copyRes(){
+  const t=document.getElementById('res');t.select();
+  const done=()=>{document.getElementById('cp').textContent='Скопировано'};
+  if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(done,()=>{document.execCommand('copy');done()});
+  else{document.execCommand('copy');done()}
+}
+function resetAll(){if(confirm('Снять все галочки и стереть дописанное?')){st={};save();location.reload()}}
+</script>
+</body>
+</html>
