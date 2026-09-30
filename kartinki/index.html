@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Личное дело: картинки</title>
+<style>
+:root{--bg:#f3ecdc;--paper:#fbf6ea;--ink:#2b2418;--muted:#8a7d66;--line:#d9cdb3;--red:#a3271f;--ok:#2f6b3a;--okbg:#e3efd9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Georgia,"Times New Roman",serif;padding-bottom:90px}
+header{padding:20px 16px 8px;max-width:1100px;margin:0 auto}
+h1{font:700 22px/1.2 "Courier New",monospace;margin:0 0 6px;letter-spacing:.5px}
+h1 span{color:var(--red)}
+.hint{color:var(--muted);font-size:14px;margin:0}
+main{max-width:1100px;margin:0 auto;padding:0 16px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:6px;margin:14px 0;padding:12px 12px 6px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+h2{font:700 16px "Courier New",monospace;margin:0 0 10px;color:var(--red);text-transform:uppercase;letter-spacing:.5px}
+.row{display:grid;grid-template-columns:110px 1fr;gap:8px;border-top:1px dashed var(--line);padding:8px 0}
+.row:first-of-type{border-top:0}
+.lab{font:600 13px "Courier New",monospace;color:var(--muted);padding-top:8px}
+.cells{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.cell{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:5px;padding:8px;background:#fff;cursor:pointer;font-size:15px}
+.cell input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--ok)}
+.cell.on{background:var(--okbg);border-color:var(--ok)}
+.cell.old{color:var(--muted)}
+.cell.old .t{text-decoration:line-through}
+.t b{display:block;margin-bottom:3px}
+.t i{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+.tag{display:inline-block;font:11px "Courier New",monospace;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:4px;text-decoration:none}
+.tag.like{color:var(--ok)}
+.tag.old{color:var(--red)}
+.own{width:100%;margin:6px 0 6px;border:1px dashed var(--line);border-radius:5px;padding:8px;font:15px Georgia,serif;background:#fff;color:var(--ink);resize:vertical;min-height:40px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);padding:10px 16px;display:flex;gap:8px;justify-content:center}
+.bar button{font:600 15px "Courier New",monospace;border:0;border-radius:5px;padding:12px 16px;cursor:pointer}
+.b1{background:#f0c24b;color:#2b2418;flex:1;max-width:360px}
+.b2{background:transparent;color:#ddd;border:1px solid #666!important}
+#out{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px}
+#out .box{background:var(--paper);border-radius:8px;max-width:700px;width:100%;max-height:88vh;display:flex;flex-direction:column;padding:14px}
+#out textarea{flex:1;min-height:50vh;width:100%;font:14px/1.4 Georgia,serif;border:1px solid var(--line);border-radius:5px;padding:10px;background:#fff;color:var(--ink)}
+#out .btns{display:flex;gap:8px;margin-top:10px}
+#out .btns button{flex:1;font:600 15px "Courier New",monospace;border:0;border-radius:5px;padding:12px;cursor:pointer;background:#f0c24b;color:#2b2418}
+#out .btns .c{background:#ddd}
+@media (max-width:600px){.row{grid-template-columns:1fr}.lab{padding-top:0}.cells{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>ЛИЧНОЕ ДЕЛО № 01101959 <span>· картинки</span></h1>
+<p class="hint">Сверху — варианты стиля с моими комментариями, ниже — по 2–4 варианта картинки на каждый лист. «рекомендую» — мой совет. Отмечайте галочкой, что нравится, дописывайте своё в поле под листом. Внизу «Собрать отмеченное» — скопируйте и пришлите в чат. Картинок пока нет — это только обсуждение.</p>
+</header>
+<main id="m"></main>
+<div class="bar"><button class="b1" onclick="collect()">Собрать отмеченное</button><button class="b2" onclick="resetAll()">Сброс</button></div>
+<div id="out"><div class="box"><textarea id="res"></textarea><div class="btns"><button onclick="copyRes()" id="cp">Скопировать</button><button class="c" onclick="document.getElementById('out').style.display='none'">Закрыть</button></div></div></div>
+<script>
+const S=[["Стиль картинок", [["Варианты", [["<b>1. Фоторобот и вещдоки</b>Карандашные наброски в стиле полицейского художника плюс рисованные «вещественные доказательства»: книги, тыквы, пирожки, карта, кольца.<i>Плюсы: неточность сходства тут и есть шутка — фоторобот никогда не бывает похож на сто процентов. Лицо рисуем не везде, а где рисуем, не боремся за реализм. Самый быстрый и цельный вариант, прямо в стиле досье.</i>", "рекомендую"], ["<b>2. Коллаж: настоящее лицо + рисунок</b>Голову мамы вырезаем с настоящего фото и ставим на нарисованную фигуру и сцену, как в шуточных открытках.<i>Плюсы: сходство стопроцентное, это правда мама. Минусы: у нас всего одно подходящее фото лица, во всех сценах будет одно и то же выражение, это может выглядеть дёшево.</i>", ""], ["<b>3. Скрытая съёмка</b>Акварель, но мама в кадре со спины, в профиль, издалека или прикрыта (книгой, шляпой). На снимке пометка «оперативная съёмка».<i>Плюсы: идеально для шпионской темы, лицо не нужно. Минусы: маму почти не видно, а она — героиня ролика.</i>", ""], ["<b>4. Акварель с лицом, как «мама на сцене»</b>То, что мы уже делали: рисованная сцена + перенос лица с фото.<i>Минусы: каждую картинку приходится подгонять по возрасту и причёске — это тот путь, где мы увязли. Годится для 1–2 главных кадров, не для всех.</i>", ""], ["<b>5. Комбинация</b>Одна настоящая фотография мамы на обложке (её все узнают), дальше — наброски-фотороботы и вещдоки.<i>Мой фаворит вместе с вариантом 1: настоящее лицо в начале задаёт тон, дальше рисунки не обязаны быть портретами.</i>", ""]]]]], ["Обложка", [["Картинка", [["<b>Папка + настоящее фото</b>Картонная папка с грифом, к ней скрепкой прикреплено настоящее фото мамы (с пледа, мама без папы).", "рекомендую"], ["<b>Папка + фоторобот</b>К папке прикреплён карандашный фоторобот мамы с пометкой «составлен со слов свидетелей».", ""], ["<b>Только папка</b>Без изображения мамы: папка, гриф, печать, штамп с номером дела.", ""]]]]], ["Лист 1. Анкета", [["Картинка", [["<b>Фоторобот анфас</b>Карандашный портрет: элегантная причёска, улыбка. Подпись: «Особые приметы: улыбка».", "рекомендую"], ["<b>Мама на сцене</b>Уже готовая акварель со сцены (версия своего возраста).", ""], ["<b>Отпечатки пальцев</b>Карточка с отпечатками пальцев в форме сердечек. Без лица.", ""]]]]], ["Лист 2. Книги", [["Картинка", [["<b>Стопка выше башни</b>Рисованная стопка книг рядом с Эйфелевой башней, стопка выше, на вершине закладка-флажок. Без лица.", "рекомендую"], ["<b>Мама с книгой</b>Мама читает в кресле, лицо частично закрыто книгой — «объект за чтением».", ""], ["<b>Пульт и сериалы</b>Вещдок: пульт от телевизора и чашка чая с биркой «вещественное доказательство».", ""]]]]], ["Лист 3. Урожай", [["Картинка", [["<b>Вещдоки урожая</b>Гигантские тыквы, дыни и помидоры с бирками и линейкой для масштаба, вокруг цветы. Без лица.", "рекомендую"], ["<b>Мама на участке</b>Мама со спины среди грядок и цветов, тыква с неё ростом.", ""], ["<b>Сосед за забором</b>Сосед подглядывает в бинокль из-за забора на мамины тыквы.", ""], ["<b>Весёлая ферма</b>Рисованный экран телефона с фермой и надписью «уровень: засекречено».", ""]]]]], ["Лист 4. Готовка", [["Картинка", [["<b>Противень пирожков</b>Противень румяных пирожков с биркой «оружие массового поражения». Без лица.", "рекомендую"], ["<b>Тянущиеся руки</b>Пирожки, и со всех сторон к ним тянутся руки.", ""], ["<b>Мама с противнем</b>Мама выносит противень, от пирожков пар.", ""]]]]], ["Лист 5. Работа", [["Картинка", [["<b>Три снимка в ряд</b>Три маленьких наброска скрепками: тюки с одеждой на рынке, пульт лифта, гарнитура диспетчера.", "рекомендую"], ["<b>Трудовая книжка</b>Вещдок: трудовая книжка со штампами «продавец/бизнес», «лифтёр», «диспетчер».", ""]]]]], ["Лист 6. Навыки", [["Картинка", [["<b>Набор ключей</b>Связка ключей: от машины, мотоцикла, лодки, самолёта — и подкова. Без лица.", "рекомендую"], ["<b>Мама-пассажир</b>Мама на пассажирском месте, за рулём «зачарованный» водитель со спины.", ""], ["<b>Кроссовки</b>Кроссовки с биркой «догнать не удалось» и облачко пыли.", ""]]]]], ["Лист 7. Поездки", [["Картинка", [["<b>Карта с флажками</b>Карта с флажками в городах из списка, пунктиром — Ниагара, Сахара, Амазонка, Байкал, Камчатка, северное сияние. Без лица.", "рекомендую"], ["<b>Чемодан с наклейками</b>Чемодан, обклеенный наклейками городов.", ""], ["<b>Билеты и штампы</b>Стопка билетов и штампы «замечена».", ""]]]]], ["Лист 8. Семья", [["Картинка", [["<b>Кольца и дата</b>Два обручальных кольца на странице, дата 18.12.1981. Без лица, папу не рисуем.", "рекомендую"], ["<b>Свадебная ленточка</b>Ленточка и конфетти рядом со штампом «завербован».", ""]]]]], ["Финал", [["Картинка", [["<b>Только печати</b>Крупно печать «ЛЮБИМА», затем «С днём рождения, мама!». Без картинки.", "рекомендую"], ["<b>Печати + мамин портрет</b>Под печатями — фото или портрет мамы, с которого начали.", ""]]]]]];
+const KEY='delo_pics_v1';
+let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+const m=document.getElementById('m');
+S.forEach((sec,si)=>{
+  const s=document.createElement('section');
+  s.innerHTML='<h2>'+sec[0]+'</h2>';
+  sec[1].forEach((row,ri)=>{
+    const r=document.createElement('div');r.className='row';
+    r.innerHTML='<div class="lab">'+row[0]+'</div>';
+    const c=document.createElement('div');c.className='cells';
+    row[1].forEach((v,vi)=>{
+      const id=si+'.'+ri+'.'+vi;
+      const l=document.createElement('label');
+      l.className='cell'+(v[1]==='убрано ранее'?' old':'')+(st[id]?' on':'');
+      const tag=v[1]==='убрано ранее'?'<span class="tag old">убрано</span>':v[1]?'<span class="tag like">'+v[1]+'</span>':'';
+      l.innerHTML='<input type="checkbox"'+(st[id]?' checked':'')+'><span><span class="t">'+v[0]+'</span>'+tag+'</span>';
+      l.querySelector('input').onchange=e=>{st[id]=e.target.checked;l.classList.toggle('on',e.target.checked);save()};
+      c.appendChild(l);
+    });
+    r.appendChild(c);s.appendChild(r);
+  });
+  const t=document.createElement('textarea');t.className='own';t.placeholder='Дописать своё к этому листу…';
+  t.value=st['own'+si]||'';t.oninput=()=>{st['own'+si]=t.value;save()};
+  s.appendChild(t);m.appendChild(s);
+});
+function collect(){
+  let out=[];
+  S.forEach((sec,si)=>{
+    let lines=[];
+    sec[1].forEach((row,ri)=>row[1].forEach((v,vi)=>{if(st[si+'.'+ri+'.'+vi])lines.push('— '+v[0].replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim())}));
+    if(st['own'+si])lines.push('+ '+st['own'+si]);
+    if(lines.length)out.push('['+sec[0]+']\n'+lines.join('\n'));
+  });
+  document.getElementById('res').value=out.join('\n\n')||'Пока ничего не отмечено.';
+  document.getElementById('out').style.display='flex';
+}
+function copyRes(){
+  const t=document.getElementById('res');t.select();
+  const done=()=>{document.getElementById('cp').textContent='Скопировано'};
+  if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(done,()=>{document.execCommand('copy');done()});
+  else{document.execCommand('copy');done()}
+}
+function resetAll(){if(confirm('Снять все галочки и стереть дописанное?')){st={};save();location.reload()}}
+</script>
+</body>
+</html>

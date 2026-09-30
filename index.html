@@ -24,6 +24,8 @@ h2{font:700 16px "Courier New",monospace;margin:0 0 10px;color:var(--red);text-t
 .cell.on{background:var(--okbg);border-color:var(--ok)}
 .cell.old{color:var(--muted)}
 .cell.old .t{text-decoration:line-through}
+.t b{display:block;margin-bottom:3px}
+.t i{display:block;color:var(--muted);font-size:14px;margin-top:4px}
 .tag{display:inline-block;font:11px "Courier New",monospace;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:4px;text-decoration:none}
 .tag.like{color:var(--ok)}
 .tag.old{color:var(--red)}
@@ -81,7 +83,7 @@ function collect(){
   let out=[];
   S.forEach((sec,si)=>{
     let lines=[];
-    sec[1].forEach((row,ri)=>row[1].forEach((v,vi)=>{if(st[si+'.'+ri+'.'+vi])lines.push('— '+v[0])}));
+    sec[1].forEach((row,ri)=>row[1].forEach((v,vi)=>{if(st[si+'.'+ri+'.'+vi])lines.push('— '+v[0].replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim())}));
     if(st['own'+si])lines.push('+ '+st['own'+si]);
     if(lines.length)out.push('['+sec[0]+']\n'+lines.join('\n'));
   });
